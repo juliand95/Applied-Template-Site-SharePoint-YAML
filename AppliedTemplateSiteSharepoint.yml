@@ -36,7 +36,7 @@ steps:
    Write-Host "Apply Pnp Provisioning Template"
    Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
   displayName: 'PowerShell Script'
-  enabled: false
+  enabled: true
 
 - pwsh: |
    #Connect to Site
@@ -59,7 +59,7 @@ steps:
    Write-Host "Apply Pnp Provisioning Template"
    Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
   displayName: 'PowerShell Script'
-  enabled: false
+  enabled: true
 
 - pwsh: '$(Parameters.script)'
   displayName: 'PowerShell Script'
@@ -74,4 +74,4 @@ steps:
    Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
    
   displayName: 'PowerShell Script'
-  enabled: false
+  enabled: true
