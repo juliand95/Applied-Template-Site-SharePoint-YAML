@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pnp:Provisioning xmlns:pnp="http://schemas.dev.office.com/PnP/2022/09/ProvisioningSchema">
+  <pnp:Preferences Generator="PnP.Framework, Version=1.13.1.0, Culture=neutral, PublicKeyToken=0d501f89f11b748c" />
+  <pnp:Templates ID="CONTAINER-TEMPLATE-B45DD95D0AD04DD6A295B640698F1419">
+    <pnp:ProvisioningTemplate ID="TEMPLATE-B45DD95D0AD04DD6A295B640698F1419" Version="1" BaseSiteTemplate="STS#3" Scope="Web">
+      <pnp:WebSettings RequestAccessEmail="julianbravo@seti.com.co" NoCrawl="false" WelcomePage="SitePages/Home.aspx" SiteLogo="{site}/SiteAssets/LogoSeti.PNG" AlternateCSS="" MasterPageUrl="{masterpagecatalog}/seattle.master" CustomMasterPageUrl="{masterpagecatalog}/seattle.master" CommentsOnSitePagesDisabled="false" QuickLaunchEnabled="true" MembersCanShare="true" SearchScope="DefaultScope" SearchBoxInNavBar="Inherit" />
+      <pnp:SiteSettings AllowDesigner="true" AllowCreateDeclarativeWorkflow="true" AllowSaveDeclarativeWorkflowAsTemplate="true" AllowSavePublishDeclarativeWorkflow="true" SearchBoxInNavBar="Inherit" SearchCenterUrl="" />
+      <pnp:Navigation AddNewPagesToNavigation="true" CreateFriendlyUrlsForNewPages="true">
+        <pnp:GlobalNavigation NavigationType="Structural">
+          <pnp:StructuralNavigation RemoveExistingNodes="false" />
+        </pnp:GlobalNavigation>
+        <pnp:CurrentNavigation NavigationType="StructuralLocal">
+          <pnp:StructuralNavigation RemoveExistingNodes="false">
+            <pnp:NavigationNode Title="Inicio" Url="{site}" />
+            <pnp:NavigationNode Title="Listas" Url="{site}/_layouts/15/viewlsts.aspx" IsExternal="true" />
+          </pnp:StructuralNavigation>
+        </pnp:CurrentNavigation>
+      </pnp:Navigation>
+      <pnp:Files>
+        <pnp:File Src="SiteAssets/SitePages/Home/1924986589-logical-data-modeling.png" Folder="SiteAssets/SitePages/Home" Overwrite="true" Level="Published" />
+        <pnp:File Src="SiteAssets/LogoSeti.PNG" Folder="SiteAssets" Overwrite="true" Level="Draft" />
+        <pnp:File Src="SiteAssets/SitePages/Home/klipartz.com.png" Folder="SiteAssets/SitePages/Home" Overwrite="true" Level="Published" />
+      </pnp:Files>
+      <pnp:ClientSidePages>
+        <pnp:ClientSidePage PromoteAsNewsArticle="false" PromoteAsTemplate="false" Overwrite="true" Layout="Home" EnableComments="false" Title="Inicio" ThumbnailUrl="" PageName="Home.aspx">
+          <pnp:Header Type="Default" LayoutType="FullWidthImage" ShowTopicHeader="false" ShowPublishDate="false" ShowBackgroundGradient="false" TopicHeader="" AlternativeText="" Authors="" AuthorByLineId="-1" />
+          <pnp:Sections>
+            <pnp:Section Order="1" Type="OneColumn">
+              <pnp:Controls>
+                <pnp:CanvasControl WebPartType="Text" ControlId="f9d0ad13-ceac-470f-8897-9eeadc13911e" Order="1" Column="1">
+                  <pnp:CanvasControlProperties>
+                    <pnp:CanvasControlProperty Key="Text" Value="&lt;h2 style=&quot;text-align:center;&quot;&gt;&lt;span class=&quot;fontSizeSuper&quot;&gt;Modelo de Datos&lt;/span&gt;&lt;/h2&gt;" />
+                  </pnp:CanvasControlProperties>
+                </pnp:CanvasControl>
+              </pnp:Controls>
+            </pnp:Section>
+            <pnp:Section Order="2" Type="TwoColumn">
+              <pnp:Controls>
+                <pnp:CanvasControl WebPartType="Text" ControlId="e30c9219-febd-49b1-8c24-1aa5b0291003" Order="1" Column="1">
+                  <pnp:CanvasControlProperties>
+                    <pnp:CanvasControlProperty Key="Text" Value="&lt;div class=&quot;imagePlugin floatLeft&quot; style=&quot;background-color:transparent;position:relative;&quot; data-alignment=&quot;FloatLeft&quot; data-imageurl=&quot;{site}/SiteAssets/SitePages/Home/klipartz.com.png&quot; data-overlaytextstyles=&quot;{&amp;quot;textColor&amp;quot;:&amp;quot;light&amp;quot;,&amp;quot;isBold&amp;quot;:false,&amp;quot;isItalic&amp;quot;:false,&amp;quot;textBoxColor&amp;quot;:&amp;quot;dark&amp;quot;,&amp;quot;textBoxOpacity&amp;quot;:0.54,&amp;quot;overlayColor&amp;quot;:&amp;quot;light&amp;quot;,&amp;quot;overlayTransparency&amp;quot;:0}&quot; data-imagenaturalheight=&quot;512&quot; data-imagenaturalwidth=&quot;512&quot; data-siteid=&quot;18953168-2a86-49c1-ac17-43b6ad6e3285&quot; data-webid=&quot;c3d9adad-7312-494e-bad3-f36e5b169495&quot; data-listid=&quot;ff0cb0dd-73f3-4310-8623-c7335b4a85da&quot; data-uniqueid=&quot;d65ffc71-6f5c-488a-a1b0-49e055d0afa9&quot; data-height=&quot;116.328125&quot; data-width=&quot;116.328125&quot; data-widthpercentage=&quot;20.552672261484098&quot; data-uploading=&quot;0&quot; data-linkurl=&quot;https://seti2015.sharepoint.com/sites/ProductoGI/template&quot;&gt;&lt;/div&gt;&lt;h4&gt;&amp;nbsp;&lt;/h4&gt;&lt;h4&gt;&lt;span class=&quot;fontSizeXLargePlus&quot;&gt;Zona de aterrizaje&lt;/span&gt;&lt;/h4&gt;" />
+                  </pnp:CanvasControlProperties>
+                </pnp:CanvasControl>
+                <pnp:CanvasControl WebPartType="Text" ControlId="55699e91-3dd0-4066-97b3-b2272a4be700" Order="2" Column="1">
+                  <pnp:CanvasControlProperties>
+                    <pnp:CanvasControlProperty Key="Text" Value="&lt;div class=&quot;imagePlugin floatLeft&quot; style=&quot;background-color:transparent;position:relative;&quot; data-alignment=&quot;FloatLeft&quot; data-imageurl=&quot;{site}/SiteAssets/SitePages/Home/klipartz.com.png&quot; data-overlaytextstyles=&quot;{&amp;quot;textColor&amp;quot;:&amp;quot;light&amp;quot;,&amp;quot;isBold&amp;quot;:false,&amp;quot;isItalic&amp;quot;:false,&amp;quot;textBoxColor&amp;quot;:&amp;quot;dark&amp;quot;,&amp;quot;textBoxOpacity&amp;quot;:0.54,&amp;quot;overlayColor&amp;quot;:&amp;quot;light&amp;quot;,&amp;quot;overlayTransparency&amp;quot;:0}&quot; data-imagenaturalheight=&quot;512&quot; data-imagenaturalwidth=&quot;512&quot; data-siteid=&quot;18953168-2a86-49c1-ac17-43b6ad6e3285&quot; data-webid=&quot;c3d9adad-7312-494e-bad3-f36e5b169495&quot; data-listid=&quot;ff0cb0dd-73f3-4310-8623-c7335b4a85da&quot; data-uniqueid=&quot;d8d192d5-823a-47d1-80ca-75e4ee989f99&quot; data-height=&quot;117.328125&quot; data-width=&quot;117.328125&quot; data-widthpercentage=&quot;20.72935070671378&quot; data-uploading=&quot;0&quot; data-linkurl=&quot;https://seti2015.sharepoint.com/sites/ProductoGI/template&quot;&gt;&lt;/div&gt;&lt;h4 style=&quot;margin-left:40px;&quot;&gt;&amp;nbsp;&lt;/h4&gt;&lt;h4 style=&quot;margin-left:40px;&quot;&gt;&lt;span class=&quot;fontSizeXLargePlus&quot;&gt;Zona de modelado&lt;/span&gt;&lt;/h4&gt;" />
+                  </pnp:CanvasControlProperties>
+                </pnp:CanvasControl>
+                <pnp:CanvasControl WebPartType="Image" JsonControlData="{&quot;id&quot;: &quot;d1d91016-032f-456d-98a4-721247c305e8&quot;, &quot;instanceId&quot;: &quot;9991fd7b-831c-40a2-80ff-a69245d3b9bb&quot;, &quot;title&quot;: &quot;Imagen&quot;, &quot;description&quot;: &quot;Agregue una imagen, una imagen o una foto a la página, incluyendo texto superpuesto y la capacidad de recortar y cambiar el tamaño de las imágenes.&quot;, &quot;dataVersion&quot;: &quot;1.11&quot;, &quot;properties&quot;: {&quot;imageSourceType&quot;:2,&quot;captionText&quot;:&quot;&quot;,&quot;altText&quot;:&quot;&quot;,&quot;linkUrl&quot;:&quot;&quot;,&quot;overlayText&quot;:&quot;&quot;,&quot;fileName&quot;:&quot;logical-data-modeling.png&quot;,&quot;siteId&quot;:&quot;{sitecollectionid}&quot;,&quot;webId&quot;:&quot;{siteid}&quot;,&quot;listId&quot;:&quot;{listid:Activos del sitio}&quot;,&quot;uniqueId&quot;:&quot;{fileuniqueid:SiteAssets/SitePages/Home/1924986589-logical-data-modeling.png}&quot;,&quot;imgWidth&quot;:1120,&quot;imgHeight&quot;:631,&quot;overlayTextStyles&quot;:{&quot;textColor&quot;:&quot;light&quot;,&quot;isBold&quot;:false,&quot;isItalic&quot;:false,&quot;textBoxColor&quot;:&quot;dark&quot;,&quot;textBoxOpacity&quot;:0.54,&quot;overlayColor&quot;:&quot;light&quot;,&quot;overlayTransparency&quot;:0},&quot;isOverlayTextVisible&quot;:true,&quot;resizeCoefficient&quot;:1,&quot;resizeDesiredWidth&quot;:364,&quot;alignment&quot;:&quot;Center&quot;,&quot;fixAspectRatio&quot;:false,&quot;isAspectRatioLockedOnLoad&quot;:false}, &quot;serverProcessedContent&quot;: {&quot;htmlStrings&quot;:{},&quot;searchablePlainTexts&quot;:{},&quot;imageSources&quot;:{&quot;imageSource&quot;:&quot;{site}/SiteAssets/SitePages/Home/1924986589-logical-data-modeling.png&quot;},&quot;links&quot;:{},&quot;customMetadata&quot;:{&quot;imageSource&quot;:{&quot;siteId&quot;:&quot;{sitecollectionid}&quot;,&quot;webId&quot;:&quot;{siteid}&quot;,&quot;listId&quot;:&quot;{listid:Activos del sitio}&quot;,&quot;uniqueId&quot;:&quot;{fileuniqueid:SiteAssets/SitePages/Home/1924986589-logical-data-modeling.png}&quot;,&quot;width&quot;:1120,&quot;height&quot;:631}}}, &quot;dynamicDataPaths&quot;: {}, &quot;dynamicDataValues&quot;: {}}" ControlId="d1d91016-032f-456d-98a4-721247c305e8" Order="1" Column="2" />
+              </pnp:Controls>
+            </pnp:Section>
+            <pnp:Section Order="3" Type="OneColumn">
+              <pnp:Controls>
+                <pnp:CanvasControl WebPartType="Text" ControlId="15ae5d16-18c1-43cf-8d7c-f75178b5c379" Order="1" Column="1">
+                  <pnp:CanvasControlProperties>
+                    <pnp:CanvasControlProperty Key="Text" Value="&lt;span class=&quot;fontSizeLarge&quot;&gt;Repositorio de datos de la aplicación OKR potencializado por&amp;nbsp;Listas de Microsoft.&lt;/span&gt;" />
+                  </pnp:CanvasControlProperties>
+                </pnp:CanvasControl>
+              </pnp:Controls>
+            </pnp:Section>
+          </pnp:Sections>
+        </pnp:ClientSidePage>
+      </pnp:ClientSidePages>
+      <pnp:Header Layout="Standard" />
+    </pnp:ProvisioningTemplate>
+  </pnp:Templates>
+</pnp:Provisioning>
