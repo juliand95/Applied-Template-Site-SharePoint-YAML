@@ -6,72 +6,57 @@ variables:
 
 steps:
 - pwsh: |
-   # Write your PowerShell commands here.
-   Write-Host "PowerShell Version"
-   get-host
+   Function ConnectToSite() {
+   	Param([string]$SiteUrl, [string]$ClientId, [string]$PathPFX, $Password, [string]$Tenant)
+       try {
+           if ($SiteUrl -or $ClientId -or $PathPFX -or $Password -or $Tenant) {
+               Write-Host "Conectando al sitio: '$($SiteUrl)'..." -ForegroundColor Yellow
+               Connect-PnPOnline -ClientId $ClientId -CertificatePath $PathPFX -CertificatePassword (ConvertTo-SecureString -AsPlainText $Password -Force) -Url $SiteUrl -Tenant $Tenant
+               Write-Host "Conexión exitosa al sitio: '$($SiteUrl)'" -ForegroundColor Green     
+           }
+           else {
+               Write-Host "La URL del sitio de origen está vacía." -ForegroundColor Red
+           }
+       }
+       catch {
+           Write-Host "Error al conectarse al sitio:'$($SiteUrl)'" $_.Exception.Message -ForegroundColor Red               
+       } 
+   }
    
-   Write-Host "PnPPowerShell Version"
-   Get-Module -Name "PnP.PowerShell" -ListAvailable
-  displayName: 'PowerShell Script'
-  enabled: true
-
-- pwsh: |
+   Function CreateNewSubSite() {
+       Param([string]$SubSiteName, [string]$SubSiteUrlName, [string]$SubSiteDescription, [string]$SubSiteTemplate, [int]$SubsiteLocale)
+       try {
+           if ($SubSiteName -or $SubSiteUrlName -or $SubSiteDescription -or $SubsiteLocale -or $SubSiteTemplate) {
+               Write-Host "Creando nuevo Subsite con el nombre '$($SubSiteName)' en la coleccion de sitios '$($SiteUrl)'..." -ForegroundColor Yellow
+               New-PnpWeb -Title $SubSiteName -Url $SubSiteUrlName -Description $SubSiteDescription -Locale $SubsiteLocale -Template $SubSiteTemplate
+               Write-Host "Creación del nuevo Subsite exitosa..." -ForegroundColor Green     
+           }
+           else {
+               Write-Host "Algunos de los parametros estan vacios..." -ForegroundColor Red
+           }
+       }
+       catch {
+           Write-Host "Error al crear el nuevo Subsite" $_.Exception.Message -ForegroundColor Red               
+       } 
+   }
+   
    #Connect to Site
-   Write-Host "Connect to Site"
-   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url $(SiteUrl) -Tenant $(Tenant)
+   ConnectToSite -SiteUrl $(SiteUrl) -ClientId $(ClientId) -PathPFX $(PathPFX) -Password $(Password) -Tenant $(Tenant)
    
    #Create a new subsite
-   Write-Host "Creating a new subsite"
-   New-PnpWeb -Title $(SubSiteName) -Url $(SubSiteUrlName) -Description $(SubSiteDescription) -Locale $(SubsiteLocale) -Template $(SubSiteTemplate)
+   CreateNewSubSite -SubSiteName $(SubSiteName) -SubSiteUrlName $(SubSiteUrlName) -SubSiteDescription $(SubSiteDescription) -SubSiteTemplate $(SubSiteTemplate) -SubsiteLocale $(SubsiteLocale)
    
    #Disconnect Site
-   Write-Host "Disconnect Site"
+   Write-Host "Desconectando el sitio $($(SiteUrl))..."
    Disconnect-PnPOnline 
    
-   #Connect to Subsite
-   Write-Host "Connect to Subsite"
-   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "$(SiteUrl)/$(SubSiteUrlName)" -Tenant $(Tenant)
+   #Connect to SubSite
+   $Url = $(SiteUrl)+"/"+$(SubSiteUrlName)
+   Write-Host "SubSitio al que se conectara '$($Url)'..."
+   ConnectToSite -SiteUrl $Url -ClientId $(ClientId) -PathPFX $(PathPFX) -Password $(Password) -Tenant $(Tenant)
    
    #Apply Pnp Provisioning Template
    Write-Host "Apply Pnp Provisioning Template"
    Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
-  displayName: 'PowerShell Script'
-  enabled: true
-
-- pwsh: |
-   #Connect to Site
-   Write-Host "Connect to Site"
-   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "https://jdbtdev.sharepoint.com/sites/Prueba2" -Tenant $(Tenant)
-   
-   #Create a new subsite
-   Write-Host "Creating a new subsite"
-   New-PnpWeb -Title $(SubSiteName) -Url $(SubSiteUrlName) -Description $(SubSiteDescription) -Locale $(SubsiteLocale) -Template $(SubSiteTemplate)
-   
-   #Disconnect Site
-   Write-Host "Disconnect Site"
-   Disconnect-PnPOnline 
-   
-   #Connect to Subsite
-   Write-Host "Connect to Subsite"
-   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "https://jdbtdev.sharepoint.com/sites/Prueba2/$(SubSiteUrlName)" -Tenant $(Tenant)
-   
-   #Apply Pnp Provisioning Template
-   Write-Host "Apply Pnp Provisioning Template"
-   Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
-  displayName: 'PowerShell Script'
-  enabled: true
-
-- pwsh: '$(Parameters.script)'
-  displayName: 'PowerShell Script'
-
-- pwsh: |
-   #Connect to Subsite
-   Write-Host "Connect to Subsite"
-   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "$(SiteUrl)/$(SubSiteUrlName)" -Tenant $(Tenant)
-   
-   #Apply Pnp Provisioning Template
-   Write-Host "Apply Pnp Provisioning Template"
-   Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
-   
   displayName: 'PowerShell Script'
   enabled: true
