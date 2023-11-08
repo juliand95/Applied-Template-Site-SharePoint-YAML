@@ -1,0 +1,74 @@
+pool:
+  name: Default
+
+steps:
+- pwsh: |
+   # Write your PowerShell commands here.
+   Write-Host "PowerShell Version"
+   get-host
+   
+   Write-Host "PnPPowerShell Version"
+   Get-Module -Name "PnP.PowerShell" -ListAvailable
+  displayName: 'PowerShell Script'
+  enabled: false
+
+- pwsh: |
+   #Connect to Site
+   Write-Host "Connect to Site"
+   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url $(SiteUrl) -Tenant $(Tenant)
+   
+   #Create a new subsite
+   Write-Host "Creating a new subsite"
+   New-PnpWeb -Title $(SubSiteName) -Url $(SubSiteUrlName) -Description $(SubSiteDescription) -Locale $(SubsiteLocale) -Template $(SubSiteTemplate)
+   
+   #Disconnect Site
+   Write-Host "Disconnect Site"
+   Disconnect-PnPOnline 
+   
+   #Connect to Subsite
+   Write-Host "Connect to Subsite"
+   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "$(SiteUrl)/$(SubSiteUrlName)" -Tenant $(Tenant)
+   
+   #Apply Pnp Provisioning Template
+   Write-Host "Apply Pnp Provisioning Template"
+   Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
+  displayName: 'PowerShell Script'
+  enabled: false
+
+- pwsh: |
+   #Connect to Site
+   Write-Host "Connect to Site"
+   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "https://jdbtdev.sharepoint.com/sites/Prueba2" -Tenant $(Tenant)
+   
+   #Create a new subsite
+   Write-Host "Creating a new subsite"
+   New-PnpWeb -Title $(SubSiteName) -Url $(SubSiteUrlName) -Description $(SubSiteDescription) -Locale $(SubsiteLocale) -Template $(SubSiteTemplate)
+   
+   #Disconnect Site
+   Write-Host "Disconnect Site"
+   Disconnect-PnPOnline 
+   
+   #Connect to Subsite
+   Write-Host "Connect to Subsite"
+   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "https://jdbtdev.sharepoint.com/sites/Prueba2/$(SubSiteUrlName)" -Tenant $(Tenant)
+   
+   #Apply Pnp Provisioning Template
+   Write-Host "Apply Pnp Provisioning Template"
+   Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
+  displayName: 'PowerShell Script'
+  enabled: false
+
+- pwsh: '$(Parameters.script)'
+  displayName: 'PowerShell Script'
+
+- pwsh: |
+   #Connect to Subsite
+   Write-Host "Connect to Subsite"
+   Connect-PnPOnline -ClientId $(ClientId) -CertificatePath $(PathPFX) -CertificatePassword (ConvertTo-SecureString -AsPlainText $(Password) -Force) -Url "$(SiteUrl)/$(SubSiteUrlName)" -Tenant $(Tenant)
+   
+   #Apply Pnp Provisioning Template
+   Write-Host "Apply Pnp Provisioning Template"
+   Invoke-PnPSiteTemplate -Path "$(Build.Repository.LocalPath)\SiteTemplate\PnP-Provisioning-FileTemplate.xml" -ResourceFolder "$(Build.Repository.LocalPath)\SiteTemplate" -ClearNavigation
+   
+  displayName: 'PowerShell Script'
+  enabled: false
