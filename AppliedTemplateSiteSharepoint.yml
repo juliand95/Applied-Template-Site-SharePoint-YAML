@@ -13,7 +13,7 @@ steps:
    Write-Host "PnPPowerShell Version"
    Get-Module -Name "PnP.PowerShell" -ListAvailable
   displayName: 'PowerShell Script'
-  enabled: false
+  enabled: true
 
 - pwsh: |
    #Connect to Site
