@@ -1,6 +1,9 @@
 pool:
   name: Default
 
+variables:
+- group: "SharePoint"
+
 steps:
 - pwsh: |
    # Write your PowerShell commands here.
